@@ -1,0 +1,51 @@
+<section class="container">
+    <div class="row mb-3">
+        <div class="col-sm-12 mt-3">
+            <form (ngSubmit)="newItem(newName, newCount); newName=''; newCount='';">
+                <div class="form-row">
+                    <div class="col-md-5">
+                        <input type="text" class="form-control form-control-lg" name="newName" [(ngModel)]="newName" placeholder="Nieuwe Boodschap">
+                    </div>
+                    <div class="col-md-5">
+                        <input type="number" class="form-control form-control-lg" name="newCount" [(ngModel)]="newCount" placeholder="Aantal">
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-lg btn-outline-success" type="submit">Toevoegen</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    Boodschappen
+                </div>
+                <div class="card-content">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" *ngFor="let item of items">
+                            <app-item [item]="item" (deleteRequestEvent)="deleteItem($event)" (itemCheckedEvent)="checkToBottom()"></app-item>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <div class="form-row">
+                        <div class="col-md-3">
+                            <button class="btn btn-outline-secondary mr-1" (click)="sortItemsAZ()">Sorteren A - Z</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button class="btn btn-outline-secondary mr-1" (click)="sortItemsCount()">Sorteren #</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button class="btn btn-outline-danger mr-1" (click)="clearItems()">Opschonen</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button class="btn btn-outline-success" (click)="randomItems()">Genereren</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

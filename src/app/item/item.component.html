@@ -1,0 +1,36 @@
+<div class="form-row">
+    <div class="col-sm-1 icon-col d-none d-md-block">
+        <span class="form-control no-border">
+            <i class="fa fa-lg fa-fw fa-check" [ngClass]="item.checked ? 'icon-checked' : 'icon-not-checked'"></i>
+        </span>
+    </div>
+    <div class="col-sm-9" *ngIf="!item.edit">
+        <div class="checkbox pointer" (click)="checkItem(item)" [ngClass]="item.checked ? 'text-checked' : ''">
+            <input type="checkbox" name="state" [(ngModel)]="item.checked">
+            <span class="form-control"><strong>{{ item.count }}</strong> x {{ item.name }}</span>
+        </div>
+    </div>
+    <div class="col-sm-9" *ngIf="item.edit">
+        <form>
+            <div class="form-row">
+                <div class="col">
+                    <input type="text" class="form-control" name="itemName" [(ngModel)]="item.name" placeholder="Boodschap">
+                </div>
+                <div class="col">
+                    <input type="number" class="form-control" name="itemCount" [(ngModel)]="item.count" placeholder="Aantal">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-sm-1 d-none d-md-block">
+        <button class="btn btn-outline-secondary" (click)="item.edit = !item.edit">
+            <i class="fa fa-lg fa-fw fa-pencil" *ngIf="!item.edit"></i>
+            <i class="fa fa-lg fa-fw fa-save" *ngIf="item.edit"></i>
+        </button>
+    </div>
+    <div class="col-sm-1 d-none d-md-block">
+        <button class="btn btn-outline-danger" (click)="deleteItem(item)">
+            <i class="fa fa-lg fa-fw fa-trash"></i>
+        </button>
+    </div>
+</div>
